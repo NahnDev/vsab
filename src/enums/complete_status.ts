@@ -1,0 +1,5 @@
+export enum COMPLETE_STATUS {
+  AWAIT = 'AWAIT',
+  READY = 'READY',
+  COMPLETED = 'COMPLETED',
+}
