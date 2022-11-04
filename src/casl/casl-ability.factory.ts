@@ -4,8 +4,8 @@ import {
   AbilityClass,
   InferSubjects,
 } from '@casl/ability';
+import { Resource } from 'src/resource/schemas/resource.schema';
 import { User } from 'src/user/schemas/user.schema';
-import { File } from '../file/schemas/file.schema';
 
 export enum Actions {
   Manage = 'manage',
@@ -15,7 +15,7 @@ export enum Actions {
   Delete = 'delete',
 }
 
-type Subjects = InferSubjects<typeof User | typeof File | 'all', true>;
+type Subjects = InferSubjects<typeof User | typeof Resource | 'all', true>;
 
 export type AppAbility = Ability<[Actions, Subjects]>;
 

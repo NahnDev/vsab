@@ -1,17 +1,36 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Exclude, plainToClass } from 'class-transformer';
+import { Exclude, plainToClass, Transform } from 'class-transformer';
+import { SchemaTypes } from 'mongoose';
 import ERole from 'src/enums/ERole';
 import { EUserStatus } from 'src/enums/EUserStatus';
+import { Social } from 'src/social/schemas/social.schema';
 
 @Schema()
 export class User {
+  @Transform(({ value }) => value.toString())
   @ApiProperty()
   _id: string;
 
   @ApiProperty()
   @Prop({ type: String, required: true })
   name: string;
+
+  @ApiProperty()
+  @Prop({ type: String, required: true, default: '' })
+  introduce: string;
+
+  @ApiProperty()
+  @Prop({ type: String, required: true, default: '' })
+  phone: string;
+
+  @ApiProperty()
+  @Prop({ type: String, required: true, default: '' })
+  fullName: string;
+
+  @ApiProperty()
+  @Prop({ type: String, required: true, default: '' })
+  short: string;
 
   @ApiProperty()
   @Prop({
@@ -47,6 +66,14 @@ export class User {
   isAdmin: boolean;
 
   roles: ERole;
+
+  @ApiProperty()
+  @Prop({
+    type: Social,
+    required: true,
+    default: { facebook: '', twitter: '', youtube: '', tiktok: '' },
+  })
+  social: Social;
 }
 
 export type UserDoc = User & Document;

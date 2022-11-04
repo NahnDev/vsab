@@ -12,8 +12,10 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AppGateway } from './app.gateway';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { FileModule } from './file/file.module';
 import { AssociationModule } from './association/association.module';
+import { ResourceModule } from './resource/resource.module';
+import { PackageModule } from './package/package.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -39,8 +41,10 @@ import { AssociationModule } from './association/association.module';
     UserModule,
     AuthModule,
     CaslModule,
-    FileModule,
     AssociationModule,
+    ResourceModule,
+    PackageModule,
+    PostModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway],
