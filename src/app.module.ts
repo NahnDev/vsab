@@ -16,6 +16,7 @@ import { AssociationModule } from './association/association.module';
 import { ResourceModule } from './resource/resource.module';
 import { PackageModule } from './package/package.module';
 import { PostModule } from './post/post.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { PostModule } from './post/post.module';
     ResourceModule,
     PackageModule,
     PostModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway],

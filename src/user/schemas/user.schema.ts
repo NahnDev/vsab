@@ -4,6 +4,7 @@ import { Exclude, plainToClass, Transform } from 'class-transformer';
 import { SchemaTypes } from 'mongoose';
 import ERole from 'src/enums/ERole';
 import { EUserStatus } from 'src/enums/EUserStatus';
+import { Resource } from 'src/resource/schemas/resource.schema';
 import { Social } from 'src/social/schemas/social.schema';
 
 @Schema()
@@ -17,27 +18,19 @@ export class User {
   name: string;
 
   @ApiProperty()
-  @Prop({ type: String, required: true, default: '' })
+  @Prop({ type: String, default: '' })
   introduce: string;
 
   @ApiProperty()
-  @Prop({ type: String, required: true, default: '' })
+  @Prop({ type: String, default: '' })
   phone: string;
 
   @ApiProperty()
-  @Prop({ type: String, required: true, default: '' })
+  @Prop({ type: String, default: '' })
   fullName: string;
 
   @ApiProperty()
-  @Prop({ type: String, required: true, default: '' })
-  short: string;
-
-  @ApiProperty()
-  @Prop({
-    type: String,
-    required: true,
-    default: '/images/default-avatar.jpg',
-  })
+  @Prop({ type: SchemaTypes.ObjectId, ref: Resource.name })
   avatar: string;
 
   @ApiProperty()
