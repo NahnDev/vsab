@@ -17,6 +17,8 @@ import { ResourceModule } from './resource/resource.module';
 import { PackageModule } from './package/package.module';
 import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
+import { EventModule } from './event/event.module';
+import { ScheduleModule } from './schedule/schedule.module';
 
 @Module({
   imports: [
@@ -47,6 +49,8 @@ import { CommentModule } from './comment/comment.module';
     PackageModule,
     PostModule,
     CommentModule,
+    EventModule,
+    ScheduleModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway],
