@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4607625b.css",
+    "main.js": "/static/js/main.473fcf16.js",
+    "static/css/261.55a63f87.chunk.css": "/static/css/261.55a63f87.chunk.css",
+    "static/js/261.1a27302b.chunk.js": "/static/js/261.1a27302b.chunk.js",
+    "static/css/148.7d20dcd7.chunk.css": "/static/css/148.7d20dcd7.chunk.css",
+    "static/js/148.be2b90c7.chunk.js": "/static/js/148.be2b90c7.chunk.js",
+    "static/css/527.b2506915.chunk.css": "/static/css/527.b2506915.chunk.css",
+    "static/js/527.3a2e010c.chunk.js": "/static/js/527.3a2e010c.chunk.js",
+    "static/css/31.11811445.chunk.css": "/static/css/31.11811445.chunk.css",
+    "static/js/31.a6949a7e.chunk.js": "/static/js/31.a6949a7e.chunk.js",
+    "static/js/787.b3a40fe8.chunk.js": "/static/js/787.b3a40fe8.chunk.js",
+    "static/js/902.b9eb3d20.chunk.js": "/static/js/902.b9eb3d20.chunk.js",
+    "static/media/bg_form.png": "/static/media/bg_form.d158b9a6186c5463a0ee.png",
+    "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.ac98a5f5ca71180fe293.ttf",
+    "index.html": "/index.html",
+    "main.4607625b.css.map": "/static/css/main.4607625b.css.map",
+    "main.473fcf16.js.map": "/static/js/main.473fcf16.js.map",
+    "261.55a63f87.chunk.css.map": "/static/css/261.55a63f87.chunk.css.map",
+    "261.1a27302b.chunk.js.map": "/static/js/261.1a27302b.chunk.js.map",
+    "148.7d20dcd7.chunk.css.map": "/static/css/148.7d20dcd7.chunk.css.map",
+    "148.be2b90c7.chunk.js.map": "/static/js/148.be2b90c7.chunk.js.map",
+    "527.b2506915.chunk.css.map": "/static/css/527.b2506915.chunk.css.map",
+    "527.3a2e010c.chunk.js.map": "/static/js/527.3a2e010c.chunk.js.map",
+    "31.11811445.chunk.css.map": "/static/css/31.11811445.chunk.css.map",
+    "31.a6949a7e.chunk.js.map": "/static/js/31.a6949a7e.chunk.js.map",
+    "787.b3a40fe8.chunk.js.map": "/static/js/787.b3a40fe8.chunk.js.map",
+    "902.b9eb3d20.chunk.js.map": "/static/js/902.b9eb3d20.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4607625b.css",
+    "static/js/main.473fcf16.js"
+  ]
+}
