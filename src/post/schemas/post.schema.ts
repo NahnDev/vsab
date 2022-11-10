@@ -42,16 +42,15 @@ export class Post {
   comments: string[];
 
   @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  publish: boolean;
+
+  @ApiProperty()
+  @ApiProperty()
   @Prop({
     type: Number,
     required: true,
     default: () => new Date().getTime(),
-    validate: {
-      validator: (value) => {
-        return value + 60000 > new Date().getTime(); // cho phep sai so 60 giay
-      },
-      message: "Time Schedule can't bigger current time",
-    },
   })
   at: number;
 }

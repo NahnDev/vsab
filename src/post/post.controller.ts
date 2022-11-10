@@ -36,9 +36,14 @@ export class PostController {
   @ApiQuery({ type: 'string', name: 'association', required: false })
   findAll(
     @Query('wait') wait: string,
+    @Query('publish') publish: string,
     @Query('association') association: string,
   ) {
-    return this.postService.findAll({ wait: wait === 'true', association });
+    return this.postService.findAll({
+      association,
+      wait: wait === 'true',
+      publish: publish === 'true',
+    });
   }
 
   @Get(':id')
@@ -64,5 +69,15 @@ export class PostController {
   @Delete(':id/like')
   unlike(@Param('id') id: string, @RequestUser() user: User) {
     return this.postService.unlike(id, user);
+  }
+
+  @Patch(':id/publish')
+  publish(@Param('id') id: string, @RequestUser() user: User) {
+    return this.postService.publish(id);
+  }
+
+  @Delete(':id/publish')
+  unpublish(@Param('id') id: string, @RequestUser() user: User) {
+    return this.postService.unpublish(id);
   }
 }

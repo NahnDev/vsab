@@ -19,6 +19,10 @@ import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
 import { EventModule } from './event/event.module';
 import { ScheduleModule } from './schedule/schedule.module';
+import { FollowModule } from './follow/follow.module';
+import { MemberModule } from './member/member.module';
+import { RoleModule } from './role/role.module';
+import { VolunteerModule } from './volunteer/volunteer.module';
 
 @Module({
   imports: [
@@ -51,6 +55,10 @@ import { ScheduleModule } from './schedule/schedule.module';
     CommentModule,
     EventModule,
     ScheduleModule,
+    FollowModule,
+    MemberModule,
+    RoleModule,
+    VolunteerModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway],

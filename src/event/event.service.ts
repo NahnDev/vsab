@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import EEventStatus from 'src/enums/EEventStatus';
 import { PackageService } from 'src/package/package.service';
 import { CreatePostDto } from 'src/post/dto/create-post.dto';
 import { PostService } from 'src/post/post.service';
@@ -59,5 +60,13 @@ export class EventService {
   async removePost(_id: string, post: string) {
     await this.postService.remove(post);
     await this.model.updateOne({ _id }, { $pull: { posts: [post] } });
+  }
+
+  async publish(_id: string) {
+    await this.model.updateOne({ _id }, { status: EEventStatus.PUBLIC });
+  }
+
+  async unpublish(_id: string) {
+    await this.model.updateOne({ _id }, { status: EEventStatus.BLOCK });
   }
 }

@@ -18,9 +18,4 @@ export class UpdateEventDto {
   @IsOptional()
   @IsString()
   banner: string;
-
-  @ApiProperty()
-  @IsOptional()
-  @IsEnum(EEventStatus)
-  status: EEventStatus;
 }

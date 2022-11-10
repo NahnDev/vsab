@@ -59,4 +59,14 @@ export class EventController {
   removePost(@Param('id') id: string, @Param('pId') pId: string) {
     return this.eventService.removePost(id, pId);
   }
+
+  @Patch(`:id/posts/publish`)
+  publish(@Param('id') id: string) {
+    return this.eventService.publish(id);
+  }
+
+  @Patch(`:id/posts/unpublish`)
+  endEvent(@Param('id') id: string) {
+    return this.eventService.unpublish(id);
+  }
 }

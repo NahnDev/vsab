@@ -17,7 +17,11 @@ export class PostService {
     return this.findOne(doc._id);
   }
 
-  async findAll(filter: { wait?: boolean; association: string }) {
+  async findAll(filter: {
+    wait?: boolean;
+    publish?: boolean;
+    association: string;
+  }) {
     const { wait, ...otherFilter } = filter;
     const current = new Date().getTime();
     const docs = await this.model
@@ -48,5 +52,12 @@ export class PostService {
   }
   async unlike(_id: string, user: User) {
     await this.model.updateOne({ _id }, { $pull: { likes: user._id } });
+  }
+
+  async publish(_id: string) {
+    await this.model.updateOne({ _id }, { publish: true });
+  }
+  async unpublish(_id: string) {
+    await this.model.updateOne({ _id }, { publish: false });
   }
 }

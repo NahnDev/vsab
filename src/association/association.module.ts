@@ -3,6 +3,9 @@ import { AssociationService } from './association.service';
 import { AssociationController } from './association.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Association, AssociationSchema } from './schemas/association.schema';
+import { FollowModule } from 'src/follow/follow.module';
+import { MemberModule } from 'src/member/member.module';
+import { RoleModule } from 'src/role/role.module';
 
 @Module({
   imports: [
@@ -12,6 +15,9 @@ import { Association, AssociationSchema } from './schemas/association.schema';
         schema: AssociationSchema,
       },
     ]),
+    FollowModule,
+    RoleModule,
+    MemberModule,
   ],
   controllers: [AssociationController],
   providers: [AssociationService],
