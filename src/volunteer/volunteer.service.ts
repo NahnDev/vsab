@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreateVolunteerDto } from './dto/create-volunteer.dto';
 import { UpdateVolunteerDto } from './dto/update-volunteer.dto';
 import { Volunteer, VolunteerDoc } from './schemas/volunteer.schema';
+import TFilter from './types/TFilter';
 
 @Injectable()
 export class VolunteerService {
@@ -16,7 +17,7 @@ export class VolunteerService {
     return doc.toJSON();
   }
 
-  async findAll(filter: { event: string }) {
+  async findAll(filter: TFilter) {
     const docs = await this.model.find(filter);
     return docs.map((doc) => doc.toJSON());
   }

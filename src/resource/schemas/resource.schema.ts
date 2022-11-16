@@ -9,7 +9,7 @@ export class Resource {
   @ApiProperty({ type: SchemaTypes.ObjectId })
   _id: string;
 
-  @Exclude()
+  @ApiProperty()
   @Prop({ type: String, required: true })
   path: string;
 

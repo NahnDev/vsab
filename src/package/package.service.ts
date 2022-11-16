@@ -8,7 +8,8 @@ import { UpdatePackageDto } from './dto/update-package.dto';
 import { Package, PackageDoc } from './schemas/package.schema';
 
 export type TFilter = {
-  association: string;
+  association?: string;
+  event?: string;
 };
 
 @Injectable()
@@ -39,7 +40,7 @@ export class PackageService {
   }
 
   async remove(_id: string) {
-    await this.model.remove({ _id });
+    await this.model.remove({ _id, event: undefined });
   }
 
   async addFiles(_id: string, file: string) {

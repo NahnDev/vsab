@@ -21,6 +21,7 @@ export class PostService {
     wait?: boolean;
     publish?: boolean;
     association: string;
+    event?: string;
   }) {
     const { wait, ...otherFilter } = filter;
     const current = new Date().getTime();

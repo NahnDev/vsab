@@ -53,7 +53,9 @@ export class ResourceService {
   }
 
   async findManyByIds(ids: string[]) {
-    const docs = await this.resourceModel.find({ _id: { $in: ids } });
+    const docs = await this.resourceModel
+      .find({ _id: { $in: ids } })
+      .sort({ at: -1 });
     return docs.map((doc) => doc.toJSON());
   }
 }

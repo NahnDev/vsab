@@ -19,5 +19,6 @@ import { Volunteer, VolunteerSchema } from './schemas/volunteer.schema';
   ],
   controllers: [VolunteerController],
   providers: [VolunteerService],
+  exports: [VolunteerService],
 })
 export class VolunteerModule {}

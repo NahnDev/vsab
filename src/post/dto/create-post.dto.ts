@@ -11,6 +11,11 @@ export class CreatePostDto {
   association: string;
 
   @ApiProperty()
+  @IsString()
+  @IsOptional()
+  event?: string;
+
+  @ApiProperty()
   @IsNumber()
   @IsOptional()
   at: number;

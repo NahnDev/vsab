@@ -20,6 +20,10 @@ export class Post {
   association: string;
 
   @ApiProperty()
+  @Prop({ type: SchemaTypes.ObjectId, ref: Event.name })
+  event: string;
+
+  @ApiProperty()
   @Prop({ type: SchemaTypes.ObjectId, ref: User.name })
   sender?: string;
 

@@ -5,16 +5,4 @@ export class CreateScheduleDto {
   @ApiProperty()
   @IsString()
   event: string;
-
-  @ApiProperty()
-  @IsString()
-  name: string;
-
-  @ApiProperty()
-  @IsString()
-  description: string;
-
-  @ApiProperty()
-  @IsNumber()
-  at: number;
 }

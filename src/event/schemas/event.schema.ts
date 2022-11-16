@@ -23,19 +23,6 @@ export class Event {
   name: string;
 
   @ApiProperty()
-  @Prop({ type: SchemaTypes.ObjectId, ref: Package.name, required: true })
-  package: string;
-
-  @ApiProperty()
-  @Prop({
-    type: [SchemaTypes.ObjectId],
-    ref: Post.name,
-    required: true,
-    default: [],
-  })
-  posts: string[];
-
-  @ApiProperty()
   @Prop({ type: Number, required: true, default: () => new Date().getTime() })
   at: number;
 
@@ -53,11 +40,12 @@ export class Event {
   banner: string;
 
   @ApiProperty()
-  @Prop({ type: String, required: true, default: '' })
+  @Prop({ type: String, default: '' })
   introduce: string;
 
-  // @ApiProperty()
-  // @Prop({type: })
+  @ApiProperty()
+  @Prop({ type: String, default: '' })
+  content: string;
 }
 
 export type EventDoc = Event & Document;

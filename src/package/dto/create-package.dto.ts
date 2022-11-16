@@ -9,5 +9,10 @@ export class CreatePackageDto {
   @ApiProperty()
   @IsString()
   @IsOptional()
+  event?: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
   name?: string;
 }

@@ -24,6 +24,10 @@ export class Package {
   association: string;
 
   @ApiProperty()
+  @Prop({ type: SchemaTypes.ObjectId, ref: Event.name })
+  event?: string;
+
+  @ApiProperty()
   @Prop({
     type: [SchemaTypes.ObjectId],
     required: true,

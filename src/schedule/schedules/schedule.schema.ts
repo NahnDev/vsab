@@ -23,7 +23,11 @@ export class Schedule {
   event: string;
 
   @ApiProperty()
-  @Prop({ type: Number, required: true })
+  @Prop({
+    type: Number,
+    required: true,
+    default: () => new Date().getTime() + 24 * 3600 * 1000,
+  })
   at: number;
 }
 

@@ -17,5 +17,10 @@ export class UpdateEventDto {
   @ApiProperty()
   @IsOptional()
   @IsString()
+  content: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
   banner: string;
 }

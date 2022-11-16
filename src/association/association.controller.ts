@@ -9,7 +9,8 @@ import {
   Req,
   Query,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CheckPolicies } from 'src/decorators/check-policies.decorator';
 import { PublicApi } from 'src/decorators/public-api.decorator';
 import { RequestUser } from 'src/decorators/request-user.decorator';
 import { FollowService } from 'src/follow/follow.service';
@@ -23,6 +24,8 @@ import { Association } from './schemas/association.schema';
 
 @PublicApi()
 @ApiTags('associations')
+@ApiBearerAuth()
+@CheckPolicies()
 @Controller('associations')
 export class AssociationController {
   constructor(

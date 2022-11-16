@@ -16,13 +16,18 @@ import { CreateScheduleDto } from '../schedule/dto/create-schedule.dto';
 import { PublicApi } from 'src/decorators/public-api.decorator';
 import { CheckPolicies } from 'src/decorators/check-policies.decorator';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { RequestUser } from 'src/decorators/request-user.decorator';
+import { User } from 'src/user/schemas/user.schema';
+import { VolunteerService } from 'src/volunteer/volunteer.service';
 
-@PublicApi()
 @ApiTags('events')
-// @CheckPolicies()
+@CheckPolicies()
 @Controller('events')
 export class EventController {
-  constructor(private readonly eventService: EventService) {}
+  constructor(
+    private readonly eventService: EventService,
+    private readonly volunteerService: VolunteerService,
+  ) {}
 
   @Post()
   create(@Body() createEventDto: CreateEventDto) {
@@ -30,12 +35,21 @@ export class EventController {
   }
 
   @Get()
+  @PublicApi()
   @ApiQuery({ type: 'string', name: 'association' })
-  findAll(@Query('association') association: string) {
-    return this.eventService.findAll({ association });
+  @ApiQuery({ type: 'string', name: 'event' })
+  findAll(
+    @Query('association') association: string,
+    @Query('event') event: string,
+  ) {
+    const filter = {};
+    if (association) filter['association'] = association;
+    if (event) filter['event'] = event;
+    return this.eventService.findAll(filter);
   }
 
   @Get(':id')
+  @PublicApi()
   findOne(@Param('id') id: string) {
     return this.eventService.findOne(id);
   }
@@ -50,23 +64,18 @@ export class EventController {
     return this.eventService.remove(id);
   }
 
-  @Post(':id/posts')
-  addPost(@Param('id') id: string, @Body() dto: CreatePostDto) {
-    return this.eventService.addPost(id, dto);
-  }
-
-  @Delete(':id/posts/:pId')
-  removePost(@Param('id') id: string, @Param('pId') pId: string) {
-    return this.eventService.removePost(id, pId);
-  }
-
-  @Patch(`:id/posts/publish`)
+  @Patch(`:id/publish`)
   publish(@Param('id') id: string) {
     return this.eventService.publish(id);
   }
 
-  @Patch(`:id/posts/unpublish`)
-  endEvent(@Param('id') id: string) {
+  @Patch(`:id/unpublish`)
+  unpublish(@Param('id') id: string) {
     return this.eventService.unpublish(id);
+  }
+
+  @Post(`:id/join`)
+  join(@Param('id') id: string, @RequestUser() user: User) {
+    return this.volunteerService.create({ event: id, user: user._id });
   }
 }

@@ -18,15 +18,16 @@ export class EventService {
   ) {}
 
   async create(dto: CreateEventDto) {
+    const doc = new this.model({ ...dto });
+    await doc.save();
     const p = await this.packageService.create({
       association: dto.association,
+      event: doc._id,
     });
-    const doc = new this.model({ ...dto, package: p._id });
-    await doc.save();
     return doc.toJSON();
   }
 
-  async findAll(filter: { association: string }) {
+  async findAll(filter: { association?: string }) {
     const docs = await this.model.find(filter);
     return docs.map((el) => el.toJSON());
   }
@@ -46,20 +47,11 @@ export class EventService {
     return `This action removes a #${id} event`;
   }
   async rename(_id: string, name: string) {
-    const event = await this.findOne(_id);
-    await this.packageService.update(event.package, { name });
+    const packages = await this.packageService.findAll({ event: _id });
+    for (const p of packages) {
+      await this.packageService.update(p._id, { name: name });
+    }
     await this.model.updateOne({ _id }, { name });
-  }
-
-  async addPost(_id: string, dto: CreatePostDto) {
-    const post = await this.postService.create(dto);
-    await this.model.updateOne({ _id }, { $addToSet: { posts: [post._id] } });
-    return await this.findOne(_id);
-  }
-
-  async removePost(_id: string, post: string) {
-    await this.postService.remove(post);
-    await this.model.updateOne({ _id }, { $pull: { posts: [post] } });
   }
 
   async publish(_id: string) {
@@ -69,4 +61,6 @@ export class EventService {
   async unpublish(_id: string) {
     await this.model.updateOne({ _id }, { status: EEventStatus.BLOCK });
   }
+
+  
 }
