@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToClass, Transform } from 'class-transformer';
 import { SchemaTypes } from 'mongoose';
+import { Event } from 'src/event/schemas/event.schema';
 import { User } from 'src/user/schemas/user.schema';
 
 @Schema()

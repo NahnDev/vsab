@@ -3,6 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { plainToClass, Transform } from 'class-transformer';
 import { SchemaType, SchemaTypes } from 'mongoose';
 import { Association } from 'src/association/schemas/association.schema';
+import { Event } from 'src/event/schemas/event.schema';
 import { Resource } from 'src/resource/schemas/resource.schema';
 
 @Schema()
