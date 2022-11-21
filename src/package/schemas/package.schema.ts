@@ -2,8 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToClass, Transform } from 'class-transformer';
 import { SchemaType, SchemaTypes } from 'mongoose';
+import { Approval } from 'src/approval/schemas/approval.schema';
 import { Association } from 'src/association/schemas/association.schema';
 import { Event } from 'src/event/schemas/event.schema';
+import { Finance } from 'src/finance/schemas/finance.schema';
 import { Resource } from 'src/resource/schemas/resource.schema';
 
 @Schema()
@@ -25,10 +27,6 @@ export class Package {
   association: string;
 
   @ApiProperty()
-  @Prop({ type: SchemaTypes.ObjectId, ref: Event.name })
-  event?: string;
-
-  @ApiProperty()
   @Prop({
     type: [SchemaTypes.ObjectId],
     required: true,
@@ -36,6 +34,10 @@ export class Package {
     default: [],
   })
   files: string[];
+
+  @ApiProperty()
+  @Prop({ type: Boolean, required: true, default: false })
+  link: boolean;
 
   @ApiProperty()
   @Prop({ type: Number, required: true, default: () => new Date().getTime() })

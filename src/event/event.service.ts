@@ -18,12 +18,15 @@ export class EventService {
   ) {}
 
   async create(dto: CreateEventDto) {
-    const doc = new this.model({ ...dto });
-    await doc.save();
-    const p = await this.packageService.create({
+    const packageDto = {
       association: dto.association,
-      event: doc._id,
-    });
+      name: 'New Event',
+      link: true,
+    };
+    const pack = await this.packageService.create(packageDto);
+    const doc = new this.model({ ...dto, package: pack._id });
+    await doc.save();
+
     return doc.toJSON();
   }
 
@@ -47,11 +50,9 @@ export class EventService {
     return `This action removes a #${id} event`;
   }
   async rename(_id: string, name: string) {
-    const packages = await this.packageService.findAll({ event: _id });
-    for (const p of packages) {
-      await this.packageService.update(p._id, { name: name });
-    }
     await this.model.updateOne({ _id }, { name });
+    const event = await this.findOne(_id);
+    await this.packageService.update(event.package, { name: name });
   }
 
   async publish(_id: string) {
@@ -61,6 +62,4 @@ export class EventService {
   async unpublish(_id: string) {
     await this.model.updateOne({ _id }, { status: EEventStatus.BLOCK });
   }
-
-  
 }

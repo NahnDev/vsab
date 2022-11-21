@@ -9,7 +9,6 @@ import { Package, PackageDoc } from './schemas/package.schema';
 
 export type TFilter = {
   association?: string;
-  event?: string;
 };
 
 @Injectable()
@@ -25,7 +24,9 @@ export class PackageService {
   }
 
   async findAll(filter: TFilter) {
-    const docs = await this.model.find(filter).sort({ at: -1 });
+    const docs = await this.model
+      .find({ ...filter, link: false })
+      .sort({ at: -1 });
     return docs.map((el) => el.toJSON());
   }
 

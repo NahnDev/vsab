@@ -17,20 +17,24 @@ export class PostService {
     return this.findOne(doc._id);
   }
 
-  async findAll(filter: {
-    wait?: boolean;
-    publish?: boolean;
-    association: string;
-    event?: string;
-  }) {
-    const { wait, ...otherFilter } = filter;
+  async findAll(
+    filter: {
+      association?: string;
+      event?: string;
+    },
+    admin?: boolean,
+  ) {
     const current = new Date().getTime();
+
     const docs = await this.model
       .find({
-        at: filter.wait ? { $gt: current } : { $lt: current },
-        ...otherFilter,
+        ...filter,
+        ...(admin
+          ? { publish: false }
+          : { publish: true, at: { $lt: current } }),
       })
       .sort({ at: -1 });
+
     return docs.map((doc) => doc.toJSON());
   }
 
@@ -56,7 +60,10 @@ export class PostService {
   }
 
   async publish(_id: string) {
-    await this.model.updateOne({ _id }, { publish: true });
+    await this.model.updateOne(
+      { _id },
+      { publish: true, at: new Date().getTime() },
+    );
   }
   async unpublish(_id: string) {
     await this.model.updateOne({ _id }, { publish: false });

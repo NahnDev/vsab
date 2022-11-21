@@ -22,7 +22,6 @@ import { CreateAssociationDto } from './dto/create-association.dto';
 import { UpdateAssociationDto } from './dto/update-association.dto';
 import { Association } from './schemas/association.schema';
 
-@PublicApi()
 @ApiTags('associations')
 @ApiBearerAuth()
 @CheckPolicies()
@@ -46,11 +45,15 @@ export class AssociationController {
   async findAll(
     @Query('follow') follow: boolean,
     @Query('member') member: boolean,
+    @Query('manager') manager: string,
     @RequestUser() user: User,
   ) {
     if (follow) return this.followService.findAllAssociations(user._id);
     if (member) return this.memberService.findAllAssociation(user._id);
-    return await this.associationService.findAll();
+
+    const filter = {};
+    if (manager) filter['manager'] = manager;
+    return await this.associationService.findAll(filter);
   }
 
   @Get(':id')
@@ -97,7 +100,7 @@ export class AssociationController {
   // ---------------------- member ----------------------
   @Get(':id/members')
   async findAllMember(@Param('id') id: string) {
-    return await this.roleService.findAll({ association: id });
+    return await this.memberService.findAllUser(id);
   }
 
   @Post(':id/join')

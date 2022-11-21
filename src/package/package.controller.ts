@@ -42,13 +42,9 @@ export class PackageController {
 
   @Get()
   @ApiQuery({ name: 'association', type: 'string' })
-  findAll(
-    @Query('association') association?: string,
-    @Query('event') event?: string,
-  ) {
+  findAll(@Query('association') association?: string) {
     const filter = {};
     if (association) filter['association'] = association;
-    if (event) filter['event'] = event;
     return this.packageService.findAll(filter);
   }
 

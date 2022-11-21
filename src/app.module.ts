@@ -23,6 +23,8 @@ import { FollowModule } from './follow/follow.module';
 import { MemberModule } from './member/member.module';
 import { RoleModule } from './role/role.module';
 import { VolunteerModule } from './volunteer/volunteer.module';
+import { ApprovalModule } from './approval/approval.module';
+import { FinanceModule } from './finance/finance.module';
 
 @Module({
   imports: [
@@ -59,6 +61,8 @@ import { VolunteerModule } from './volunteer/volunteer.module';
     MemberModule,
     RoleModule,
     VolunteerModule,
+    ApprovalModule,
+    FinanceModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway],

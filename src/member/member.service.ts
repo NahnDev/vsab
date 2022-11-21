@@ -21,6 +21,8 @@ export class MemberService {
 
   async findAllUser(association: Association['_id']) {
     const docs = await this.model.find({ association });
+    console.log(docs);
+
     return docs.map((doc) => doc.toJSON());
   }
 

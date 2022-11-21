@@ -19,6 +19,7 @@ import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { RequestUser } from 'src/decorators/request-user.decorator';
 import { User } from 'src/user/schemas/user.schema';
 import { VolunteerService } from 'src/volunteer/volunteer.service';
+import EEventStatus from 'src/enums/EEventStatus';
 
 @ApiTags('events')
 @CheckPolicies()
@@ -36,15 +37,15 @@ export class EventController {
 
   @Get()
   @PublicApi()
-  @ApiQuery({ type: 'string', name: 'association' })
-  @ApiQuery({ type: 'string', name: 'event' })
   findAll(
     @Query('association') association: string,
     @Query('event') event: string,
+    @Query('admin') admin: string,
   ) {
     const filter = {};
     if (association) filter['association'] = association;
     if (event) filter['event'] = event;
+    if (!admin) filter['status'] = EEventStatus.PUBLIC;
     return this.eventService.findAll(filter);
   }
 

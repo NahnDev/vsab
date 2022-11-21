@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreatePackageDto {
   @ApiProperty()
@@ -9,10 +9,10 @@ export class CreatePackageDto {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  event?: string;
+  name?: string;
 
   @ApiProperty()
-  @IsString()
+  @IsBoolean()
   @IsOptional()
-  name?: string;
+  link?: boolean;
 }

@@ -36,6 +36,10 @@ export class Event {
   status: EEventStatus;
 
   @ApiProperty()
+  @Prop({ type: SchemaTypes.ObjectId, ref: Package.name })
+  package: string;
+
+  @ApiProperty()
   @Prop({ type: SchemaTypes.ObjectId, ref: Resource.name })
   banner: string;
 

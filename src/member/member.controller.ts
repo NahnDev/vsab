@@ -12,8 +12,13 @@ import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { RequestUser } from 'src/decorators/request-user.decorator';
 import { User } from 'src/user/schemas/user.schema';
+import { CheckPolicies } from 'src/decorators/check-policies.decorator';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@Controller('member')
+@ApiTags('members')
+@ApiBearerAuth()
+@Controller('members')
+@CheckPolicies()
 export class MemberController {
   constructor(private readonly memberService: MemberService) {}
 

@@ -32,18 +32,16 @@ export class PostController {
   }
 
   @Get()
-  @ApiQuery({ type: 'boolean', name: 'wait', required: false })
-  @ApiQuery({ type: 'string', name: 'association', required: false })
   findAll(
-    @Query('wait') wait: string,
-    @Query('publish') publish: string,
+    @Query('admin') admin: boolean = false,
     @Query('association') association: string,
+    @Query('event') event: string,
   ) {
-    return this.postService.findAll({
-      association,
-      wait: wait === 'true',
-      publish: publish === 'true',
-    });
+    const filter = {};
+    if (association) filter['association'] = association;
+    if (event) filter['event'] = event;
+
+    return this.postService.findAll(filter, admin);
   }
 
   @Get(':id')
@@ -71,12 +69,12 @@ export class PostController {
     return this.postService.unlike(id, user);
   }
 
-  @Patch(':id/publish')
+  @Post(':id/publish')
   publish(@Param('id') id: string, @RequestUser() user: User) {
     return this.postService.publish(id);
   }
 
-  @Delete(':id/publish')
+  @Delete(':id/unpublish')
   unpublish(@Param('id') id: string, @RequestUser() user: User) {
     return this.postService.unpublish(id);
   }

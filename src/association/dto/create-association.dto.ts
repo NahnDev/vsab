@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreateAssociationDto {
   @IsString()
@@ -8,5 +8,11 @@ export class CreateAssociationDto {
 
   @IsString()
   @ApiProperty()
-  uri: string;
+  @IsOptional()
+  uri?: string;
+
+  @IsString()
+  @ApiProperty()
+  @IsOptional()
+  manager?: string;
 }

@@ -15,6 +15,10 @@ export class Association {
   name: string;
 
   @ApiProperty()
+  @Prop({ type: SchemaTypes.ObjectId, ref: Association.name })
+  manager: string;
+
+  @ApiProperty()
   @Prop({ type: String, required: true, unique: true })
   uri: string;
 

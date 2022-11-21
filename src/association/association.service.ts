@@ -11,13 +11,15 @@ export class AssociationService {
     @InjectModel(Association.name) private model: Model<AssociationDoc>,
   ) {}
   async create(dto: CreateAssociationDto): Promise<Association> {
-    const doc = new this.model(dto);
+    const doc = new this.model({ ...dto, uri: `${new Date().getTime()}` });
     await doc.save();
     return await this.findOne(doc._id);
   }
 
-  async findAll() {
-    const docs = (await this.model.find({})) || [];
+  async findAll(filter: { manager?: string }) {
+    console.log({ filter });
+
+    const docs = (await this.model.find(filter)) || [];
     return docs.map((el) => el.toJSON());
   }
 
