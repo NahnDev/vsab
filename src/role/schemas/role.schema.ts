@@ -8,7 +8,35 @@ import { Association } from 'src/association/schemas/association.schema';
 export class Permission {
   @ApiProperty()
   @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
-  manager: boolean;
+  general: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  unit: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  event: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  doc: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  member: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  post: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  finance: boolean;
+
+  @ApiProperty()
+  @Prop({ type: SchemaTypes.Boolean, required: true, default: false })
+  approval: boolean;
 }
 
 @Schema()

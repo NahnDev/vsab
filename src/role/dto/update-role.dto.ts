@@ -5,8 +5,4 @@ import PermissionDto from './permission.dto';
 
 export class UpdateRoleDto extends PartialType(
   PickType(CreateRoleDto, ['name']),
-) {
-  @ApiProperty()
-  @Type(() => PermissionDto)
-  permission: string;
-}
+) {}

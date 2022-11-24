@@ -22,7 +22,7 @@ export class Member {
 
   @ApiProperty()
   @Prop({ type: SchemaTypes.ObjectId, ref: Role.name })
-  role: string;
+  role?: string;
 
   @ApiProperty()
   @Prop({ type: Number, required: true, default: () => new Date().getTime() })

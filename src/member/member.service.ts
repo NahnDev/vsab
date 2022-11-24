@@ -45,6 +45,7 @@ export class MemberService {
   }
 
   async update(_id: string, dto: UpdateMemberDto) {
+    if (dto.role === '') dto.role = null;
     await this.model.updateOne({ _id }, dto);
     return await this.findOne(_id);
   }
