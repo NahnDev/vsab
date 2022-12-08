@@ -30,6 +30,16 @@ export class UpdateUserDto extends PartialType(
   fullName: string;
 
   @ApiProperty()
+  @IsString()
+  @IsOptional()
+  code: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  address: string;
+
+  @ApiProperty()
   @IsOptional()
   @IsEnum(EUserStatus)
   active: EUserStatus;

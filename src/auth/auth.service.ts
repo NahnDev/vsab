@@ -125,10 +125,10 @@ export class AuthService {
 
   async register(createUserDto: CreateUserDto): Promise<User> {
     const user = await this.userService.create(createUserDto);
-    this.mailService.sendActiveEmail(
-      user.email,
-      await this.buildActiveLink(user),
-    );
+    // this.mailService.sendActiveEmail(
+    //   user.email,
+    //   await this.buildActiveLink(user),
+    // );
     return user;
   }
 

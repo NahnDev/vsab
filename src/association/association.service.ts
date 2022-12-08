@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Socket } from 'socket.io';
+import { AssociationGateway } from './association.gateway';
 import { CreateAssociationDto } from './dto/create-association.dto';
 import { UpdateAssociationDto } from './dto/update-association.dto';
 import { Association, AssociationDoc } from './schemas/association.schema';
@@ -9,6 +11,7 @@ import { Association, AssociationDoc } from './schemas/association.schema';
 export class AssociationService {
   constructor(
     @InjectModel(Association.name) private model: Model<AssociationDoc>,
+    private readonly socket: AssociationGateway,
   ) {}
   async create(dto: CreateAssociationDto): Promise<Association> {
     const doc = new this.model({ ...dto, uri: `${new Date().getTime()}` });

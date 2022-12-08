@@ -30,6 +30,14 @@ export class User {
   fullName: string;
 
   @ApiProperty()
+  @Prop()
+  code: string;
+
+  @ApiProperty()
+  @Prop()
+  address: string;
+
+  @ApiProperty()
   @Prop({ type: SchemaTypes.ObjectId, ref: Resource.name })
   avatar: string;
 

@@ -6,6 +6,7 @@ import { Association, AssociationSchema } from './schemas/association.schema';
 import { FollowModule } from 'src/follow/follow.module';
 import { MemberModule } from 'src/member/member.module';
 import { RoleModule } from 'src/role/role.module';
+import { AssociationGateway } from './association.gateway';
 
 @Module({
   imports: [
@@ -20,6 +21,6 @@ import { RoleModule } from 'src/role/role.module';
     MemberModule,
   ],
   controllers: [AssociationController],
-  providers: [AssociationService],
+  providers: [AssociationService, AssociationGateway],
 })
 export class AssociationModule {}
