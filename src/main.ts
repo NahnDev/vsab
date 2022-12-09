@@ -14,6 +14,7 @@ async function bootstrap() {
       'http://localhost:3000',
       'http://localhost:5500',
       'http://localhost:3030',
+      'https://vsa-nahndev.vercel.app',
     ],
   });
   // app.setGlobalPrefix('api');
