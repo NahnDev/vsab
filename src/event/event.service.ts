@@ -31,7 +31,7 @@ export class EventService {
   }
 
   async findAll(filter: { association?: string }) {
-    const docs = await this.model.find(filter);
+    const docs = await this.model.find(filter).sort({ at: -1 });
     return docs.map((el) => el.toJSON());
   }
 

@@ -2,6 +2,7 @@ import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
+  IsBoolean,
   IsObject,
   IsOptional,
   IsString,
@@ -13,10 +14,12 @@ import { CreateAssociationDto } from './create-association.dto';
 export class UpdateAssociationDto extends PartialType(CreateAssociationDto) {
   @ApiProperty()
   @IsString()
+  @IsOptional()
   introduction: string;
 
   @ApiProperty()
   @IsObject()
+  @IsOptional()
   @Type(() => SocialDto)
   social: SocialDto;
 
@@ -30,4 +33,9 @@ export class UpdateAssociationDto extends PartialType(CreateAssociationDto) {
   @ApiProperty()
   @IsOptional()
   logo: string;
+
+  @IsBoolean()
+  @ApiProperty()
+  @IsOptional()
+  block: boolean;
 }

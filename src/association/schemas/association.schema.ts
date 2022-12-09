@@ -41,6 +41,10 @@ export class Association {
   @ApiProperty()
   @Prop({ type: SchemaTypes.ObjectId })
   logo: string;
+
+  @ApiProperty()
+  @Prop({ type: Boolean, default: false })
+  block: boolean;
 }
 
 export type AssociationDoc = Association & Document;

@@ -31,9 +31,14 @@ export class ApprovalController {
 
   @Get()
   @ApiQuery({ type: 'string', name: 'association' })
-  findAll(@Query('association') association: string) {
+  @ApiQuery({ type: 'boolean', name: 'submitted' })
+  findAll(
+    @Query('association') association: string,
+    @Query('submitted') submitted: boolean,
+  ) {
     const filter = {};
     if (filter['association']) filter['association'] = association;
+    if (submitted) return this.approvalService.getSubmitted(association);
     return this.approvalService.findAll(filter);
   }
 

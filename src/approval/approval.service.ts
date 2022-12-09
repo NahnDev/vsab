@@ -29,7 +29,7 @@ export class ApprovalService {
   }
 
   async findAll(filter: { association?: string }) {
-    const docs = await this.model.find(filter);
+    const docs = await this.model.find(filter).sort({ at: -1 });
     return docs.map((doc) => doc.toJSON());
   }
 
@@ -42,7 +42,7 @@ export class ApprovalService {
     await this.model.updateOne({ _id, block: false }, dto);
     const approval = await this.findOne(_id);
     if (dto.name)
-      await this.packageService.update(approval._id, { name: dto.name });
+      await this.packageService.update(approval.package, { name: dto.name });
     return approval;
   }
 
@@ -80,5 +80,14 @@ export class ApprovalService {
         },
       },
     );
+  }
+  async getSubmitted(association: string) {
+    const approvals = await this.findAll({ association });
+    return approvals.filter((approval) => {
+      let review = approval.reviews[approval.reviews.length - 1];
+      if (!review) return false;
+      if (review.status === EApprovalStatus.SUBMIT) return true;
+      return false;
+    });
   }
 }

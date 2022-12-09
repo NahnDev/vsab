@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Association } from 'src/association/schemas/association.schema';
+import { RoleService } from 'src/role/role.service';
 import { User } from 'src/user/schemas/user.schema';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
@@ -50,7 +51,10 @@ export class MemberService {
     return await this.findOne(_id);
   }
 
-  async remove(_id) {
+  async remove(_id: string) {
     await this.model.remove({ _id });
+  }
+  async removeRole(role: string) {
+    await this.model.updateMany({ role }, { role: null });
   }
 }

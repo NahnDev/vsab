@@ -113,4 +113,9 @@ export class AssociationController {
     const doc = await this.memberService.findByAssociationAndUser(id, user._id);
     return await this.memberService.remove(doc._id);
   }
+
+  @Get(`:id/permissions`)
+  permission(@Param('id') id: string, @RequestUser() user: User) {
+    return this.associationService.getPermissions(id, user);
+  }
 }
