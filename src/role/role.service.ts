@@ -48,7 +48,7 @@ export class RoleService {
     );
     if (!member) return permissions;
 
-    permissions = { ...permissions, member: true };
+    permissions = { ...permissions, join: true };
     const role = await this.findOne(member.role);
     if (!role) return permissions;
     return { ...permissions, ...role.permission };

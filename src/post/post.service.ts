@@ -55,6 +55,7 @@ export class PostService {
 
   async remove(_id: string) {
     await this.model.remove({ _id });
+    this.socket.onDeleted(_id)
   }
 
   async like(_id: string, user: User) {

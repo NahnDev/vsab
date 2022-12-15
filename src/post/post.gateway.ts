@@ -24,4 +24,8 @@ export class PostGateway {
   async onLike(obj: Post['_id']) {
     this.server.emit(`post/${obj}/like`);
   }
+
+  async onDeleted(obj: Post['_id']) {
+    this.server.emit(`post/${obj}/deleted`);
+  }
 }

@@ -8,7 +8,9 @@ export class AppService implements OnApplicationBootstrap {
     return 'Hello World!';
   }
   async onApplicationBootstrap() {
-    // tao
-    // Tao use
+    // Tao user
+    // Tạo assciation
+    // tạo role với toàn quyền
+    // Add member với quyền vừa tạo
   }
 }
