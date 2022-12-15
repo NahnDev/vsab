@@ -1,6 +1,6 @@
 import { UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
+import multer, { diskStorage } from 'multer';
 import { join } from 'path';
 
 export function UseMulterInterceptor() {
